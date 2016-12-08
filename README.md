@@ -14,4 +14,10 @@ java -cp target/sparkdemo-1.0-SNAPSHOT.jar com.mycompany.sparkdemo.App
 3 git客户端建立本地仓库。git init
 设置追踪远程仓库 git remote add origin <url>
 
+Q1:mysql中已经建立的job没有定时执行?
 
+A1:查看job是否开启了自动执行
+  MySQL> show global variables like '%event_scheduler%';
+
+  开启job自动执行
+  set global event_scheduler = on;  
