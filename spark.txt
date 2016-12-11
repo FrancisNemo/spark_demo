@@ -1,0 +1,28 @@
+
+spark三个主要路径
+
+bin                          #客户端作业调用入口 spark-shell、spark-sql等均调用了spark-submit
+	spark-submit [options]   #初始化环境load-spark-env.sh (加载 conf/spark_env.sh，读取配置信息)，
+							 #调用spark-class (调用jars/spark-launcher.jar)
+    --master [local | spark://host:port | yarn-cluster]
+
+conf
+	spark_env.sh             #配置信息包含了 本地启动方式、standalone、yarn集群方式启动。具体参数非常多，参考doc 
+
+
+sbin						 # 服务端 master和slave 资源、调度的启动入口。
+	start-master.sh	         # 先加载sbin/spark-config.sh（加载python）,
+							 # 注意是借用了bin/load-spark-env.sh (加载 conf/spark_env.sh，读取配置信息)
+							 # 调用了spark-daemon.sh（使用 spark_env.sh中 SPARK_DEAMON_JAVA_OPTS，该参数也为master 利用zookeeper实现HA）
+
+=================================
+
+前面三个介绍后，再运行示例
+
+./bin/run-example SparkPi 10 2  #先调用脚本 spark-submit， SparkPi作为class类名传入（在example/jars/）。
+								#加载环境conf/spark_env.sh。
+
+遇到报错 Service "sparkdriver" 。。。
+原因：本地执行，启动时需要绑定监控服务。
+spark_env.sh中 加入SPARK_LOCAL_IP=xxx.xxx.xxx.xxx，即可
+
