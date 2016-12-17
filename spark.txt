@@ -26,3 +26,13 @@ sbin						 # 服务端 master和slave 资源、调度的启动入口。
 原因：本地执行，启动时需要绑定监控服务。
 spark_env.sh中 加入SPARK_LOCAL_IP=xxx.xxx.xxx.xxx，即可
 
+
+=====================================
+SparkSession
+在Spark2.0中只要创建一个SparkSession就够了，SparkConf、SparkContext和SQLContext都已经被封装在SparkSession当中
+
+
+===========================================
+sparkdemo.jar打包完毕后，推送到服务器上测试。
+ ./bin/spark-submit --class com.mycompany.sparkdemo.App /opt/spark-2.0.2-bin-hadoop2.7/examples/jars/sparkdemo.jar /opt/spark-2.0.2-bin-hadoop2.7/README.md
+

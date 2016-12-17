@@ -21,3 +21,10 @@ A1:查看job是否开启了自动执行
 
   开启job自动执行
   set global event_scheduler = on;  
+
+==============
+注意点：
+spark开发环境IDEA，需要安装scala插件 setting->plugins->scala.
+如果使用了Java8中的lambda表达式，则Java Complier也要设置到1.8.
+打包方式有两种，一种直接用IDEA的build Artifacts； 另一种用mvn package (maven compiler默认1.5编译，需要在pom中添加显示声明).
+
