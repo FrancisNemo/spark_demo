@@ -21,14 +21,14 @@ public class App {
         }
 
         /*SparkSession在spark2中统一入口*/
-        SparkSession spark = SparkSession.builder().appName("SparkWordCount").getOrCreate();
+        SparkSession sparkSession = SparkSession.builder().appName("SparkWordCount").getOrCreate();
 //        JavaRDD<String> lines = spark.read().textFile(args[0]).javaRDD();
 //        JavaRDD<String> words = lines.flatMap(s -> Arrays.asList(SPACE.split(s)).iterator());
 //        JavaPairRDD<String, Integer> ones = words.mapToPair(w -> new Tuple2<String, Integer>(w,1));
 //        JavaPairRDD<String, Integer> counts = ones.reduceByKey((a,b) -> a+b);
 //        List<Tuple2<String, Integer>> list = counts.collect();
 
-        List<Tuple2<String, Integer>> list = spark
+        List<Tuple2<String, Integer>> list = sparkSession
                 .read()
                 .textFile(args[0])
                 .javaRDD()
@@ -41,6 +41,6 @@ public class App {
             System.out.println(t._1() + ":" + t._2());
         }
 
-        spark.stop();
+        sparkSession.stop();
     }
 }

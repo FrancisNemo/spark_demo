@@ -1,5 +1,11 @@
 /*ddl table job*/
-create table job(id int, batchNo varchar(20));
+CREATE TABLE job(
+id varchar(30) default null,
+name varchar(30) default null,
+status varchar(30) default null,
+starttime varchar(30) default null,
+endtime varchar(30) default null
+);
 
 /*procedure daily_job 插入作业批次，每分钟一次，共计1440*/
 create procedure daily_job()
